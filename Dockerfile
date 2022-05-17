@@ -12,6 +12,7 @@ RUN npm run build
 # /app/build has stuff we care
 
 FROM nginx
+EXPOSE 80
 # important: we are copy from builder container to this container
 COPY --from=builder /app/build/ /usr/share/nginx/html 
 # start nginx is default command, no need to for start nginx
