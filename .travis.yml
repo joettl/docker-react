@@ -1,0 +1,12 @@
+language: generic 
+sudo: required #needed for docker
+services:
+  - docker
+
+before_install:
+  - docker build -t joettl/docker-react -f Dockerfile.dev .
+
+script:
+  # docker run joettl/docker-react npm run test  -- --coverage #this does not terminate
+  - docker run -e CI=true joettl/docker-react npm run test  
+
