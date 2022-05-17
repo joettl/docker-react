@@ -10,3 +10,17 @@ script:
   # docker run joettl/docker-react npm run test  -- --coverage #this does not terminate
   - docker run -e CI=true joettl/docker-react npm run test  
 
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-736203244624" #Amazon S3 Storage
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  #access_key_id: $AWS_ACCESS_KEY
+  #secret_access_key:
+  #  secure: "$AWS_SECRET_KEY"
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
